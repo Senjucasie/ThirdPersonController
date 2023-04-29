@@ -10,7 +10,6 @@ public class PlayerTeststate : PlayerBaseState
 
     public override void Enter()
     {
-        _remainingTime = 5;
         Debug.Log("Enter");
     }
 

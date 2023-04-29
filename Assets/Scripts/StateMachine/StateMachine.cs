@@ -14,12 +14,12 @@ public abstract class StateMachine : MonoBehaviour
 
     public void SwitchState(State newstate)
     {
-        if(_currentState==null|| newstate==null)
+        if( newstate==null)
         {
-            Debug.LogError("_currentstate or newstate is null");
+            Debug.LogError($"newstate is null{newstate}");
             return;
         }
-        _currentState.Exit();
+        _currentState?.Exit();
         _currentState = newstate;
         _currentState.Enter();
     }

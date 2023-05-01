@@ -10,13 +10,13 @@ public class PlayerTeststate : PlayerBaseState
 
     public override void Enter()
     {
-        Debug.Log("Enter");
+    Debug.Log("Enter");
     }
 
     public override void Tick(float deltatime)
     {
         _remainingTime -= deltatime;
-        Debug.Log($"remainingtime{_remainingTime}");
+        //Debug.Log($"remainingtime{_remainingTime}");
         if(_remainingTime <= 0)
         {
             _playerStateMachine.SwitchState(new PlayerTeststate(_playerStateMachine));

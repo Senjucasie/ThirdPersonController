@@ -5,6 +5,7 @@ public class PlayerTeststate : PlayerBaseState
     public PlayerTeststate(PlayerStateMachine playerstatemachine) : base(playerstatemachine) { }
 
     private Vector3 _movePosition = Vector3.zero;
+    private Vector2 _moveInput;
 
     public override void Enter()
     {
@@ -14,10 +15,14 @@ public class PlayerTeststate : PlayerBaseState
 
     public override void Tick(float deltatime)
     {
-        Vector2 moveinput = _playerStateMachine.InputReader.MoveInput;
-        _movePosition.x = moveinput.x;
-        _movePosition.z = moveinput.y;
-        _playerStateMachine.transform.Translate(_movePosition * deltatime);  
+        _moveInput = _playerStateMachine.InputReader.MoveInput;
+
+        if (_moveInput == Vector2.zero) return;
+
+        _movePosition.x = _moveInput.x;
+        _movePosition.z = _moveInput.y;
+        _playerStateMachine.CharacterControl.Move(_movePosition * deltatime * _playerStateMachine.MoveSpeed);
+        _playerStateMachine.transform.rotation = Quaternion.LookRotation(_movePosition);
     }
 
     public override void Exit()

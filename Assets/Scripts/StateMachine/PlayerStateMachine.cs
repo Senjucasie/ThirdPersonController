@@ -7,6 +7,10 @@ public class PlayerStateMachine : StateMachine
 
     [field:SerializeField]public PlayerInputReader InputReader { get; private set; }
 
+    [field: SerializeField]public CharacterController CharacterControl { get; private set; }
+
+    [field: SerializeField] public float MoveSpeed { get; private set; }
+
 
     private void Start()
     {

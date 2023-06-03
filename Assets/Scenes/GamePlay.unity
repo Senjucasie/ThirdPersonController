@@ -157,6 +157,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <InputReader>k__BackingField: {fileID: 490561664}
+  <CharacterControl>k__BackingField: {fileID: 0}
 --- !u!65 &490561660
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -296,6 +297,29 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &785127786 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5976513414621717297, guid: dc0e3d6fe25a10c4da0a0db287baed19, type: 3}
+  m_PrefabInstance: {fileID: 8421311009697712265}
+  m_PrefabAsset: {fileID: 0}
+--- !u!143 &785127791
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 785127786}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 2
+  m_Radius: 0.26
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.026
+  m_MinMoveDistance: 0
+  m_Center: {x: 0, y: 0.9, z: 0}
 --- !u!1 &1687258581
 GameObject:
   m_ObjectHideFlags: 0
@@ -536,6 +560,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1782444981920660815, guid: dc0e3d6fe25a10c4da0a0db287baed19, type: 3}
+      propertyPath: <CharacterControl>k__BackingField
+      value: 
+      objectReference: {fileID: 785127791}
     - target: {fileID: 5976513414621717297, guid: dc0e3d6fe25a10c4da0a0db287baed19, type: 3}
       propertyPath: m_Name
       value: Player

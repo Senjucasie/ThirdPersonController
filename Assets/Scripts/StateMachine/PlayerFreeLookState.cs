@@ -6,6 +6,8 @@ public class PlayerFreeLookState : PlayerBaseState
 
     private readonly int _playerFreeLook=Animator.StringToHash("FreeMove");
 
+    private const float AnimatorDamp=0.1f;
+
     private Vector3 _movePosition;
 
     public override void Enter()
@@ -16,30 +18,34 @@ public class PlayerFreeLookState : PlayerBaseState
 
     public override void Tick(float deltatime)
     {
-        _movePosition = CalculateMoveVector(_playerStateMachine.CameraTransform.forward, _playerStateMachine.CameraTransform.right, _playerStateMachine.InputReader.MoveInput);
+        _movePosition = CalculateMoveVector(_playerStateMachine.CameraTransform.forward, 
+                                            _playerStateMachine.CameraTransform.right, 
+                                            _playerStateMachine.InputReader.MoveInput);
 
         if (_movePosition == Vector3.zero)
         {
-            _playerStateMachine.PlayerAnimator.SetFloat(_playerFreeLook, 0, 0.1f, deltatime);
+            _playerStateMachine.PlayerAnimator.SetFloat(_playerFreeLook, 0, AnimatorDamp, deltatime);
             return;
         }
 
         _playerStateMachine.CharacterControl.Move(_movePosition * deltatime * _playerStateMachine.MoveSpeed);
-        _playerStateMachine.PlayerAnimator.SetFloat(_playerFreeLook, 1, 0.1f, deltatime);
+        _playerStateMachine.PlayerAnimator.SetFloat(_playerFreeLook, 1, AnimatorDamp, deltatime);
 
-        FaceMovementDirection();
+        FaceMovementDirection(deltatime);
     }
 
-    private void FaceMovementDirection()
+    private void FaceMovementDirection(float deltatime)
     {
-        _playerStateMachine.transform.rotation = Quaternion.LookRotation(_movePosition);
+        _playerStateMachine.transform.rotation = Quaternion.Lerp(_playerStateMachine.transform.rotation, 
+                                                                Quaternion.LookRotation(_movePosition)
+                                                                ,deltatime*_playerStateMachine.RotationSpeed);
     }
 
     public override void Exit()
     {
         Debug.Log("Exit");
 
-    _playerStateMachine.InputReader.OnJumpEvent -= OnJump;
+        _playerStateMachine.InputReader.OnJumpEvent -= OnJump;
     }
 
     private void OnJump()

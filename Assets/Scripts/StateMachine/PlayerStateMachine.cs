@@ -13,7 +13,9 @@ public class PlayerStateMachine : StateMachine
 
     [field: SerializeField] public float MoveSpeed { get; private set; }
 
-     public Transform CameraTransform { get; private set; }
+    [field: SerializeField] public float RotationSpeed { get; private set; }
+
+    public Transform CameraTransform { get; private set; }
 
 
     private void Start()

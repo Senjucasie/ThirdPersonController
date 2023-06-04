@@ -17,11 +17,16 @@ public class PlayerTeststate : PlayerBaseState
     {
         _moveInput = _playerStateMachine.InputReader.MoveInput;
 
-        if (_moveInput == Vector2.zero) return;
+        if (_moveInput == Vector2.zero)
+        {
+            _playerStateMachine.PlayerAnimator.SetFloat("FreeMove", 0, 0.1f, deltatime);
+            return;
+        }
 
         _movePosition.x = _moveInput.x;
         _movePosition.z = _moveInput.y;
         _playerStateMachine.CharacterControl.Move(_movePosition * deltatime * _playerStateMachine.MoveSpeed);
+        _playerStateMachine.PlayerAnimator.SetFloat("FreeMove", 1, 0.1f, deltatime);
         _playerStateMachine.transform.rotation = Quaternion.LookRotation(_movePosition);
     }
 

@@ -9,6 +9,8 @@ public class PlayerStateMachine : StateMachine
 
     [field: SerializeField]public CharacterController CharacterControl { get; private set; }
 
+    [field: SerializeField]public Animator PlayerAnimator { get; private set; }
+
     [field: SerializeField] public float MoveSpeed { get; private set; }
 
 

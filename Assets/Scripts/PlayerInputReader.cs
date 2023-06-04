@@ -46,4 +46,9 @@ public class PlayerInputReader : MonoBehaviour, Controls.IPlayerActions
     {
         MoveInput = context.ReadValue<Vector2>();
     }
+
+    public void OnFreeLook(InputAction.CallbackContext context)
+    {
+           
+    }
 }
